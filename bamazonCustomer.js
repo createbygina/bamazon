@@ -11,12 +11,12 @@ var connection = mysql.createConnection({
 
 connection.connect(function (err) {
       console.log("connected as id " + connection.threadId);
-      start();;
+      start();
+    });
 
       function start() {
         inquirer
-          .prompt([
-              {
+          .prompt([{
               name: "item",
               type: "input",
               message: "Enter ID of the product you would like to purchase."
@@ -29,17 +29,24 @@ connection.connect(function (err) {
             }
 
           ])
-          .then(function (answer) {
-            connection.query(
-              "INSERT INTO products SET", {
-                item_id: answer.item,
-                stock_quantity: answer.quantity
-              },
-              function (err) {
-                if (err) throw (err);
-                console.log("Insufficient quantity");
-              }
-            );
-          });
+//           .then(function(answer) {
+//   10            var item = res[i];
+//               if (answer.quantity <= item.stock_quantity){
+//                   console.log("Purchase successful!")
+//               }
+//           })
         }
-    });
+        listItems();
+        //   
+
+        function listItems(){
+            connection.query(
+                        "SELECT * FROM products",
+                        function (err, res) {
+                          for (var i = 0; i < res.length; i++) {
+                            console.log("\n" + res[i].item_id + " | " + res[i].product_name + " | " + res[i].department_name + " | " + "$" + res[i].price + " | " + "QTY: " + res[i].stock_quantity)
+                            
+        }
+    })
+}
+      
