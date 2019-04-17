@@ -1,7 +1,7 @@
 # bamazon
-Customer View (work in progress)
+## Customer View (work in progress)
 ![](partOne.gif)
 
 
-MySQL
+## MySQL
 ![](mysql.png)
